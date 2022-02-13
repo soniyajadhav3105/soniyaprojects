@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>
+            <%= title %>
+        </h1>
+        <a href="/add" class="btn btn-sm btn-primary">Add Employee</a><br /><br />
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        First_name
+                    </th>
+                    <th>
+                        Middle_name
+                    </th>
+                    <th>
+                        Last_name
+                    </th>
+                    <th>
+                        DOB
+                    </th>
+                    <th>
+                        Gender
+                    </th>
+                    <th>
+                        Basic
+                    </th>
+                    <th>
+                        Allowanace
+                    </th>
+                    <th>
+                        Deduction
+                    </th>
+                    <th>
+                        Netsal
+                    </th>
+                    <th>
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% emp.forEach(function(emp){ %>
+                    <tr>
+                        <td>
+                            <%= emp.First_name %>
+                        </td>
+                        <td>
+                            <%= emp.Middle_name %>
+                        </td>
+                        <td>
+                            <%= emp.Last_name %>
+                        </td>
+                        <td>
+                            <%= emp.DOB %>
+                        </td>
+                        <td>
+                            <%= emp.Gender %>
+                        </td>
+                        <td>
+                            <%= emp.Basic %>
+                        </td>
+                        <td>
+                            <%= emp.Allowanace %>
+                        </td>
+                        <td>
+                            <%= emp.Deduction %>
+                        </td>
+                        <td>
+                            <%= emp.Netsal %>
+                        </td>
+                        <td>
+                            <a href="update/<%= emp.Empid %>" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="delete/<%= emp.Empid %>" class="btn btn-sm btn-primary">Delete</a>
+
+                        </td>
+
+                    </tr>
+                    <% }); %>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+console.log('name',document.getElementById('Middle_name'))
