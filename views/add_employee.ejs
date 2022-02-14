@@ -24,7 +24,8 @@
     <div>
       <div class="form-group">
         <label>FIRST NAME <span class="required">*</span></label>
-        <input type="text" class="form-control1" name="First_name" id="First_name" autocomplete="off" required>
+        <input type="text" class="form-control1" name="First_name" id="First_name" autocomplete="off" MaxLength="50"
+          required>
       </div>
 
 
@@ -33,7 +34,8 @@
       <div class="form-group">
         <label>MIDDLE NAME <span class="required">*</span></label>
 
-        <input type="text" name="Middle_name" id="Middle_name" class="form-control1" autocomplete="off" required>
+        <input type="text" name="Middle_name" id="Middle_name" class="form-control1" autocomplete="off" MaxLength="50"
+          required>
       </div>
 
 
@@ -42,7 +44,7 @@
       <div class="form-group">
         <label>LAST NAME <span class="required">*</span></label>
 
-        <input type="text" onPaste="return false" name="Last_name" id="Last_name" class="form-control1"
+        <input type="text" onPaste="return false" name="Last_name" id="Last_name" class="form-control1" MaxLength="50"
           autocomplete="off" required>
       </div>
 
@@ -52,7 +54,10 @@
       <div class="form-group">
         <label>DATE OF BIRTH<span class="required">*</span></label>
 
-        <input type="date" onPaste="return false" name="DOB" id="DOB" class="form-control1" autocomplete="off" required>
+        <input type="date" onPaste="return false" name="DOB" id="DOB" class="form-control1" value="DOB"
+          autocomplete="off" onchange="agedifference(event)" required>
+        <span id="error" style="color: red;"></span>
+
       </div>
 
 
@@ -89,14 +94,16 @@
           <tbody>
             <tr>
               <td>
-                <input type="number" onPaste="return false" name="Basic" id="Basic" autocomplete="off" required>
+                <input type="number" onPaste="return false" name="Basic" id="Basic" autocomplete="off"
+                  onchange="salarycal(event)" required>
               </td>
               <td>
                 <input type="number" onPaste="return false" name="Allowanace" id="Allowanace" autocomplete="off"
-                  required>
+                  onchange="salarycal(event)" required>
               </td>
               <td>
-                <input type="number" onPaste="return false" name="Deduction" id="Deduction" autocomplete="off" required>
+                <input type="number" onPaste="return false" name="Deduction" id="Deduction" autocomplete="off"
+                  onchange="salarycal(event)" required>
               </td>
               <td>
                 <input type="number" onPaste="return false" name="Netsal" id="Netsal" autocomplete="off" required>
@@ -109,7 +116,7 @@
       <div class="formdata">
         <button type="submit" class="btn btn-primary" style="margin-top: -43px">submit</button>
         <button type="cancel" class="btn btn-primary" style="margin-top: -46px;
-    margin-left: 68px;">cancel</button> <br />
+    margin-left: 68px;" onclick="ClearFields()">cancel</button> <br />
       </div>
   </form>
   <style>
@@ -142,3 +149,44 @@
 </body>
 
 </html>
+<script>
+  function salarycal(event) {
+    var basic = parseInt(document.getElementById('Basic').value)
+    var allowance = parseInt(document.getElementById('Allowanace').value)
+    var deduction = parseInt(document.getElementById('Deduction').value)
+    var sum = (basic) + (allowance) + (deduction)
+    document.getElementById("Netsal").value = sum;
+
+  }
+
+  function ClearFields() {
+
+    document.getElementById("form").reset();
+
+
+  }
+
+  function agedifference(event) {
+    var date = document.getElementById('DOB').value
+    var today = new Date();
+    var birthDate = new Date(date);
+    var davalue = birthDate.getDate()
+    var datemonth = birthDate.getMonth()
+    var dateyear = birthDate.getFullYear()
+
+    var todayalue = today.getDate()
+    var todaymonth = 1 + today.getMonth()
+    var todayyear = today.getFullYear()
+    var age = ""
+    age = todayyear - dateyear;
+    if (age < 18) {
+      document.getElementById("error").innerHTML = "Not Employed Age below 18 years"
+
+    } else {
+      document.getElementById("error").innerHTML = ""
+
+    }
+
+  }
+
+</script>
